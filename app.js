@@ -12,17 +12,22 @@ let progress = JSON.parse(localStorage.getItem('streamforge_progress')) || {};
 // API Helper
 async function fetchTMDB(endpoint) {
     try {
-        const url = endpoint.includes('?') ? `${CONFIG.API_BASE}${endpoint}` : `${CONFIG.API_BASE}${endpoint}?`;
+        // Properly construct URL with parameters
+        const separator = endpoint.includes('?') ? '&' : '?';
+        const url = `${CONFIG.API_BASE}${endpoint}${separator}language=en-US&page=1`;
         const res = await fetch(url, {
             headers: {
                 Authorization: `Bearer ${CONFIG.TMDB_TOKEN}`,
                 accept: "application/json"
             }
         });
-        if (!res.ok) throw new Error('API Error');
+        if (!res.ok) {
+            console.error(`API Error: ${res.status} ${res.statusText}`);
+            throw new Error('API Error');
+        }
         return await res.json();
     } catch (err) {
-        console.error(err);
+        console.error("fetchTMDB error:", err);
         return null;
     }
 }
@@ -171,8 +176,7 @@ async function openDetails(id, type) {
         sSelect.onchange = () => loadEpisodes(id, sSelect.value);
         if (data.seasons.length > 0) loadEpisodes(id, sSelect.value || 1);
     } else {
-        tvControls.classList.remove('hidden'); // Hack to hide
-        tvControls.style.display = 'none';
+        tvControls.classList.add('hidden');
     }
 }
 
