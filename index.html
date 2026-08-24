@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamForge | Premium Streaming</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons for UI elements -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="site-header">
+        <div class="logo">
+            <i class="ph-fill ph-play-circle"></i>
+            <span>StreamForge</span>
+        </div>
+        <nav>
+            <a href="#" class="nav-link active" data-view="home">Home</a>
+            <a href="#" class="nav-link" data-view="movies">Movies</a>
+            <a href="#" class="nav-link" data-view="tv">TV Shows</a>
+            <a href="#" class="nav-link" data-view="mylist">My List</a>
+        </nav>
+        <div class="header-actions">
+            <button id="search-btn"><i class="ph ph-magnifying-glass"></i></button>
+            <div class="avatar"></div>
+        </div>
+    </header>
+
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="hidden">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Search movies, TV shows...">
+                <button id="close-search"><i class="ph ph-x"></i></button>
+            </div>
+            <div id="search-results" class="grid-container"></div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero skeleton-hero"></section>
+        
+        <!-- Dynamic Content Sections will be injected here -->
+        <div id="sections-container"></div>
+    </main>
+
+    <!-- Details Modal -->
+    <div id="details-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-modal"><i class="ph ph-x"></i></button>
+            <div id="details-hero" class="details-hero">
+                <div class="details-hero-gradient"></div>
+                <div class="details-info">
+                    <h2 id="details-title">Title</h2>
+                    <div class="details-meta">
+                        <span id="details-year">2024</span>
+                        <span id="details-rating"><i class="ph-fill ph-star"></i> <span id="rating-val">0.0</span></span>
+                        <span id="details-runtime">120m</span>
+                    </div>
+                    <p id="details-genres" class="genres"></p>
+                    <p id="details-overview" class="overview"></p>
+                    
+                    <!-- TV Show Season Selector (Hidden for movies) -->
+                    <div id="tv-controls" class="hidden">
+                        <select id="season-selector"></select>
+                        <select id="episode-selector"></select>
+                    </div>
+
+                    <div class="details-actions">
+                        <button id="watch-btn" class="btn primary"><i class="ph-fill ph-play"></i> Watch Now</button>
+                        <button id="add-list-btn" class="btn secondary"><i class="ph ph-plus"></i> My List</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player Modal -->
+    <div id="player-modal" class="modal hidden">
+        <div class="player-wrapper">
+            <div class="player-header">
+                <span id="player-title">Now Playing</span>
+                <button id="close-player"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="iframe-container">
+                <iframe id="vidking-player" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 StreamForge. All rights reserved.</p>
+        <p class="tmdb-attr">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
